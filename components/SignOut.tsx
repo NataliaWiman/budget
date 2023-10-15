@@ -16,7 +16,14 @@ const SignOut: React.FC = () => {
     }
   };
 
-  return <button onClick={handleSignOut}>Sign Out</button>;
+  return (
+    <button
+      onClick={handleSignOut}
+      className="py-2 px-3 bg-slate-400 text-white rounded-xl"
+    >
+      Sign Out
+    </button>
+  );
 };
 
 export default SignOut;

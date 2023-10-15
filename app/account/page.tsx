@@ -25,18 +25,29 @@ function AccountPage() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-5">
-      <div>
-        <p>Email: {user?.email}</p>
-        <div>{user ? <SignOut /> : null}</div>
-        <input
-          type="text"
-          value={displayName}
-          onChange={(e) => setDisplayName(e.target.value)}
-          placeholder="Your Name"
-        />
-        <button onClick={handleNameUpdate}>Update Name</button>
-      </div>
+    <main className="flex flex-col mt-5 mx-auto p-5 w-[90%] bg-white rounded-2xl shadow-lg">
+      <h1 className="mb-2 text-sm text-slate-500 text-center">Account</h1>
+      {user?.displayName ? (
+        <p className="text-lg">Name: {user?.displayName}</p>
+      ) : null}
+      <p className="text-lg">Email: {user?.email}</p>
+      <p className="mt-5 mb-2">
+        {user?.displayName ? "Change name" : "Provide name (optional)"}
+      </p>
+      <input
+        type="text"
+        value={displayName}
+        onChange={(e) => setDisplayName(e.target.value)}
+        placeholder="Your Name"
+        className="py-2 px-3 bg-slate-100 rounded-lg"
+      />
+      <button
+        onClick={handleNameUpdate}
+        className="my-5 py-2 px-3 bg-orange-400 text-white rounded-lg"
+      >
+        Update Name
+      </button>
+      <div>{user ? <SignOut /> : null}</div>
     </main>
   );
 }

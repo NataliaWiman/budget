@@ -8,6 +8,7 @@ import getData from "@/firebase/firestore/getData";
 import { montserrat } from "../layout";
 import useCanSpendDaily from "@/helpers/useCanSpendDaily";
 import calculateSpending from "@/helpers/calculateSpending";
+import Image from "next/image";
 
 function DashboardPage() {
   const { user } = useAuthContext();
@@ -65,10 +66,8 @@ function DashboardPage() {
   return (
     <main className="dashboard flex min-h-screen flex-col items-center justify-between p-5">
       <div className="max-w-lg w-full">
-        <header className="relative w-full flex flex-col items-center px-5 py-[5vh] rounded-xl shadow-lg bg-white text-black">
-          <p className="mb-2 text-sm text-slate-500">
-            {user?.displayName ? user?.displayName : null} Current balace
-          </p>
+        <header className="relative w-full flex flex-col items-center p-5 rounded-xl shadow-lg bg-white text-black">
+          <p className="mb-2 text-sm text-slate-500">Current balace</p>
           <div
             className={`balance-wrapper ${
               showEditBalance ? "open" : ""
@@ -78,11 +77,9 @@ function DashboardPage() {
               onClick={onEditBalance}
               className={`${montserrat.variable} balance text-4xl`}
             >
-              {balance !== null ? (
-                <span className="font-bold">{balance.toLocaleString()}</span>
-              ) : (
-                "Loading..."
-              )}
+              <span className="font-bold">
+                {balance !== null ? balance.toLocaleString() : 0}
+              </span>
             </p>
             {showEditBalance ? (
               <EditBalance
