@@ -1,5 +1,5 @@
 {
-  "name": "Money, please!",
+  "name": "Money please",
   "short_name": "Monies",
   "description": "A Next.js-based Progressive Web App (PWA) for tracking financial expenses and savings in a simple way with real-time Firebase integration for data persistence.",
   "start_url": "/",

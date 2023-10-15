@@ -23,7 +23,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head />
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+      </head>
       <body className={gabarito.variable}>
         <div className="flex flex-col min-h-[100vh] bg-slate-100">
           <AuthContextProvider>{children}</AuthContextProvider>
