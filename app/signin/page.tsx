@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useAuthContext } from "@/context/AuthContext";
 import SignIn from "@/components/SignIn";
 
-export default function Home() {
+function SignInPage() {
   const router = useRouter();
   const { user } = useAuthContext();
 
@@ -21,3 +21,5 @@ export default function Home() {
     </main>
   );
 }
+
+export default SignInPage;
