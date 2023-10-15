@@ -3,6 +3,10 @@
 @import "tailwindcss/utilities";
 
 body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
   font-family: var(--font-primary);
   color: black;
 }

@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <head />
       <body className={gabarito.variable}>
-        <div className="bg-slate-100">
+        <div className="flex flex-col min-h-[100vh] bg-slate-100">
           <AuthContextProvider>{children}</AuthContextProvider>
           <Navigation />
         </div>

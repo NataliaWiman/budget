@@ -23,41 +23,51 @@ const Page = () => {
     return router.push("/dashboard");
   };
   return (
-    <div className="wrapper">
-      <div className="form-wrapper">
-        <h1 className="mt-60 mb-30">Sign in</h1>
-        <p>
-          Don't have an account? <Link href="/signup">Create now</Link>
-        </p>
-        <form onSubmit={handleForm} className="form">
-          <label htmlFor="email">
-            <p>Email</p>
-            <input
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              type="email"
-              name="email"
-              id="email"
-              placeholder="example@mail.com"
-            />
-          </label>
-          <label htmlFor="password">
-            <p>Password</p>
-            <input
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              type="password"
-              name="password"
-              id="password"
-              placeholder="password"
-            />
-          </label>
-          <label htmlFor="remember">
-            <input type="checkbox" name="remember" id="remember" /> Remember me
-          </label>
-          <button type="submit">Continue</button>
-        </form>
-      </div>
+    <div className="flex flex-col mt-10 mx-auto p-5 w-[90%] bg-white rounded-2xl shadow-lg">
+      <h1 className="mb-5 text-xl">Sign in</h1>
+      <p className="text-sm">
+        Don't have an account?{" "}
+        <Link href="/signup" className="underline">
+          Create one now
+        </Link>
+      </p>
+      <form onSubmit={handleForm} className="form mt-5 flex flex-col">
+        <label htmlFor="email" className="text-sm">
+          Email
+        </label>
+        <input
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          type="email"
+          name="email"
+          id="email"
+          placeholder="example@mail.com"
+          className="mb-3 py-2 px-3 bg-slate-100 rounded-lg"
+        />
+
+        <label htmlFor="password" className="text-sm">
+          Password
+        </label>
+        <input
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          type="password"
+          name="password"
+          id="password"
+          placeholder="password"
+          className="mb-3 py-2 px-3 bg-slate-100 rounded-lg"
+        />
+
+        {/* <label htmlFor="remember">
+          <input type="checkbox" name="remember" id="remember" /> Remember me
+        </label> */}
+        <button
+          type="submit"
+          className="my-5 py-2 px-3 bg-orange-400 text-white rounded-lg"
+        >
+          Continue
+        </button>
+      </form>
     </div>
   );
 };
