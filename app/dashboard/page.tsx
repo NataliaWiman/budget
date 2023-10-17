@@ -25,32 +25,32 @@ function DashboardPage() {
     if (user == null) router.push("/signin");
   }, [user]);
 
-  useEffect(() => {
-    const fetchBalance = async () => {
-      if (user) {
-        const { result, error } = await getData("users", user.uid);
-        if (error) {
-          console.error("Error fetching user balance:", error);
-          return;
-        }
-        if (result?.exists()) {
-          const currentBalance = result.data().currentBalance;
-          const lastUpdatedBalance = result.data().lastUpdatedBalance || 0; // Fallback to 0 if undefined
-          const lastUpdatedDate = result.data().lastUpdatedDate;
-
-          const { moneySpent, firstSpendDay } = calculateSpending(
-            currentBalance,
-            lastUpdatedBalance,
-            lastUpdatedDate
-          );
-
-          setBalance(currentBalance);
-          setMoneySpent(moneySpent);
-          setFirstSpendDay(firstSpendDay);
-        }
+  const fetchBalance = async () => {
+    if (user) {
+      const { result, error } = await getData("users", user.uid);
+      if (error) {
+        console.error("Error fetching user balance:", error);
+        return;
       }
-    };
+      if (result?.exists()) {
+        const currentBalance = result.data().currentBalance;
+        const lastUpdatedBalance = result.data().lastUpdatedBalance || 0; // Fallback to 0 if undefined
+        const lastUpdatedDate = result.data().lastUpdatedDate;
 
+        const { moneySpent, firstSpendDay } = calculateSpending(
+          currentBalance,
+          lastUpdatedBalance,
+          lastUpdatedDate
+        );
+
+        setBalance(currentBalance);
+        setMoneySpent(moneySpent);
+        setFirstSpendDay(firstSpendDay);
+      }
+    }
+  };
+
+  useEffect(() => {
     fetchBalance();
   }, [user]);
 
@@ -71,7 +71,7 @@ function DashboardPage() {
           <div
             className={`balance-wrapper ${
               showEditBalance ? "open" : ""
-            } relative py-2 px-10 rounded-2xl text-black`}
+            } relative min-w-[200px] py-2 px-10 rounded-2xl text-black text-center`}
           >
             <p
               onClick={onEditBalance}
@@ -86,6 +86,7 @@ function DashboardPage() {
                 userId={user?.uid || ""}
                 currentBalance={balance || 0}
                 onClose={onCloseBalance}
+                onUpdate={fetchBalance}
               />
             ) : null}
           </div>

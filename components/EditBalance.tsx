@@ -1,15 +1,28 @@
 // components/EditBalance.tsx
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import updateBalance from "@/firebase/firestore/updateBalance";
 
 interface Props {
   userId: string;
   currentBalance: number;
   onClose: () => void;
+  onUpdate: () => void;
 }
 
-const EditBalance: React.FC<Props> = ({ userId, onClose, currentBalance }) => {
+const EditBalance: React.FC<Props> = ({
+  userId,
+  onClose,
+  onUpdate,
+  currentBalance,
+}) => {
+  const inputRef = useRef<HTMLInputElement>(null);
   const [newBalance, setNewBalance] = useState<number>(currentBalance);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewBalance(parseFloat(e.target.value));
@@ -21,12 +34,15 @@ const EditBalance: React.FC<Props> = ({ userId, onClose, currentBalance }) => {
       console.log("Error updating balance:", error);
     } else {
       console.log("Balance updated:", result);
+      onClose();
+      onUpdate();
     }
   };
 
   return (
     <div className="edit-balance absolute top-0 left-0 w-full">
       <input
+        ref={inputRef}
         type="number"
         id="new-balance"
         name="new-balance"
