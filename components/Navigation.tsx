@@ -31,13 +31,13 @@ const Navigation = () => {
           href={item.uri}
         >
           {pathname === item.uri ? (
-            <span className="absolute top-0 text-[10px] text-violet-700">
+            <span className="absolute top-0 text-[10px] text-orange-400">
               &#x25CF;
             </span>
           ) : null}
           <span
             className={`${
-              pathname === item.uri ? "text-violet-700" : "text-black"
+              pathname === item.uri ? "text-orange-400" : "text-black"
             }`}
             dangerouslySetInnerHTML={{ __html: item.image }}
           />
