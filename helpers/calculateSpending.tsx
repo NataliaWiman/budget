@@ -21,9 +21,11 @@ function calculateSpending(
 
   const daysSinceFirstSpend = today.diff(firstSpendDay, "day");
 
-  const moneySpent = lastUpdatedBalance - currentBalance;
-  const averageDailySpending =
-    daysSinceFirstSpend === 0 ? 0 : moneySpent / daysSinceFirstSpend;
+  // If today is the salary day and last update was also today, then moneySpent should be 0
+  let moneySpent = lastUpdatedBalance - currentBalance;
+  if (today.isSame(lastSalaryDate) && dayjs(lastUpdatedDate).isSame(today)) {
+    moneySpent = 0;
+  }
 
   return {
     moneySpent: Math.round(moneySpent),

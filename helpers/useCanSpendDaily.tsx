@@ -13,7 +13,7 @@ const useCanSpendDaily = (totalAmount: number): DailySpendableResult => {
 
   let nextSalaryDate: Date;
 
-  if (currentDay <= 25) {
+  if (currentDay < 25) {
     nextSalaryDate = new Date(currentYear, currentMonth, 25);
   } else {
     nextSalaryDate = new Date(currentYear, currentMonth + 1, 25);
